@@ -17,25 +17,10 @@ function addPatient(name) {
     return newPatient;
 }
 
-function averageMinutes() {
-    const finished = patients.filter(
-        p => p.status === "done" && p.startedAt !== undefined && p.endedAt !== undefined
-    );
-    if (finished.length === 0) {
-        return 5;
-    }
-    let total = 0;
-    for (const p of finished) {
-        total += p.endedAt - p.startedAt;
-    }
-    const averageMs = total / finished.length;
-    return averageMs / 60000;
-}
-
 function renderList() {
     const waitingList = document.getElementById("waitingList");
     waitingList.innerHTML = "";
-    const avg = averageMinutes();
+    const avg = averageMinutes(patients);
     let count = 0;
     for (const p of patients) {
         const li = document.createElement("li");
