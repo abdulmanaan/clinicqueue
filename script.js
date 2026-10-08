@@ -71,8 +71,22 @@ function handleSkip(patient) {
     renderList();
 }
 
+function handleNewDay() {
+    const waitingPatients = patients.filter(p => p.status === "waiting");
+    const sure = confirm(`${waitingPatients.length} patients are waiting. Are you sure to start a new day?`);
+    if (!sure) {
+        return;
+    }
+    patients = [];
+    nextToken = 1;
+    serving.textContent = "";
+    saveData();
+    renderList();
+}
+
 addBtn.addEventListener("click", handleAdd);
 nextBtn.addEventListener("click", handleNext);
+newDayBtn.addEventListener("click", handleNewDay);
 
 nameInput.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
