@@ -6,10 +6,14 @@ function render() {
     if (text === null) {
         return;
     }
-    const patients = JSON.parse(text).patients;
+    const clinicqueue = JSON.parse(text);
+    const patients = clinicqueue.patients;
+    const onBreak = clinicqueue.onBreak === true;
 
     const patientInRoom = patients.find(p => p.status === "in room");
-    if (patientInRoom === undefined) {
+    if (onBreak) {
+        serving.textContent = "Doctor on break";
+    } else if (patientInRoom === undefined) {
         serving.textContent = "In Room: Token -";
     } else {
         serving.textContent = `In Room: Token ${patientInRoom.token}`;
@@ -21,9 +25,13 @@ function render() {
     let count = 0;
     for (const p of top5) {
         count += 1;
-        const minutes = Math.max(1, Math.round(count * avg));
         const li = document.createElement("li");
-        li.textContent = `Token ${p.token} ~${minutes} min`;
+        if (onBreak) {
+            li.textContent = `Token ${p.token} (after break)`;
+        } else {
+            const minutes = Math.max(1, Math.round(count * avg));
+            li.textContent = `Token ${p.token} ~${minutes} min`;
+        }
         nextList.appendChild(li);
     }
 }
