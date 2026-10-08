@@ -1,4 +1,4 @@
-const patients = [];
+let patients = [];
 let nextToken = 1;
 
 function addPatient(name) {
@@ -39,6 +39,7 @@ const nextBtn = document.getElementById("nextBtn");
 function handleAdd() {
     const newPatient = addPatient(nameInput.value);
     if (newPatient !== null) {
+        saveData();
         renderList();
         nameInput.value = "";
     }
@@ -60,11 +61,13 @@ function handleNext() {
         firstWaiting.status = "in room";
         serving.textContent = `In Room: Token ${firstWaiting.token}`;
     }
+    saveData();
     renderList();
 }
 
 function handleSkip(patient) {
     patient.status = "skipped";
+    saveData();
     renderList();
 }
 
@@ -77,3 +80,24 @@ nameInput.addEventListener("keydown", function (event) {
     }
 });
 
+function saveData() {
+    const clinicqueue = {nextToken: nextToken, patients: patients};
+    localStorage.setItem("clinicqueue", JSON.stringify(clinicqueue));
+}
+
+function loadData() {
+    const text = localStorage.getItem("clinicqueue");
+    if (text === null) {
+        return
+    }
+    const clinicqueue = JSON.parse(text);
+    patients = clinicqueue.patients;
+    nextToken = clinicqueue.nextToken;
+    const inRoom = patients.find(p => p.status === "in room");
+    if (inRoom !== undefined) {
+        serving.textContent = `In Room: Token ${inRoom.token}`;
+    }
+    renderList();
+}
+
+loadData();
