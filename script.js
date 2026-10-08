@@ -17,6 +17,17 @@ function renderList() {
     for (const p of patients) {
         const li = document.createElement("li");
         li.textContent = `Token ${p.token}: ${p.name} (${p.status})`;
+        if (p.status === "done" || p.status === "skipped") {
+            li.style.color = "gray";
+        }
+        if (p.status === "waiting") {
+            const btn = document.createElement("button");
+            btn.textContent = "Skip";
+            btn.addEventListener("click", function () {
+                handleSkip(p);
+            });
+            li.appendChild(btn);
+        }
         waitingList.appendChild(li);
     }
 }
@@ -49,6 +60,11 @@ function handleNext() {
         firstWaiting.status = "in room";
         serving.textContent = `In Room: Token ${firstWaiting.token}`;
     }
+    renderList();
+}
+
+function handleSkip(patient) {
+    patient.status = "skipped";
     renderList();
 }
 
