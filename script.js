@@ -20,34 +20,56 @@ function addPatient(name) {
     return newPatient;
 }
 
+function addCell(row, text) {
+    const td = document.createElement("td");
+    td.textContent = text;
+    row.appendChild(td);
+    return td;
+}
+
 function renderList() {
     const waitingList = document.getElementById("waitingList");
     waitingList.innerHTML = "";
     const avg = averageMinutes(patients);
     let count = 0;
     for (const p of patients) {
-        const li = document.createElement("li");
-        li.textContent = `Token ${p.token}: ${p.name} (${p.status})`;
+        const tr = document.createElement("tr");
+        addCell(tr, p.token);
+        addCell(tr, p.name);
+
+        const statusCell = addCell(tr, "");
+        const span = document.createElement("span");
+        span.textContent = p.status;
+        span.className = `badge badge-${p.status.replace(" ", "-")}`;
+        statusCell.appendChild(span);
+
         if (p.status === "done" || p.status === "skipped") {
-            li.style.color = "gray";
+            tr.classList.add("finished");
         }
+
+        const timeCell = addCell(tr, "—");
+        const actionCell = addCell(tr, "");
         if (p.status === "waiting") {
             count += 1;
             const minutes = Math.max(1, Math.round(count * avg));
-            li.textContent += ` ~${minutes} min `;
+            timeCell.textContent = `~${minutes} min`;
             const btn = document.createElement("button");
             btn.textContent = "Skip";
+            btn.className = "skip-btn";
             btn.addEventListener("click", function () {
                 handleSkip(p);
             });
-            li.appendChild(btn);
+            actionCell.appendChild(btn);
         }
-        waitingList.appendChild(li);
+
+        waitingList.appendChild(tr);
     }
 }
 
 function updateButtons() {
     nextBtn.disabled = onBreak;
+    nameInput.disabled = onBreak;
+    addBtn.disabled = onBreak;
     breakBtn.disabled = onBreak;
     resumeBtn.disabled = !onBreak;
 }

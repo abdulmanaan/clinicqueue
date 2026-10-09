@@ -8,6 +8,8 @@
     --muted: #5b6070;
     --line: #e5e7eb;
     --card: #f5f6f7;
+    --success: #00ab4a;
+    --success-soft: #e7f6ec;
 }
 
 * {
@@ -18,7 +20,7 @@
 body {
     background: #ffffff;
     color: var(--text);
-    font-family: "Onest", system-ui, sans-serif;
+    font-family: "Outfit", system-ui, sans-serif;
     line-height: 1.5;
 }
 
@@ -35,7 +37,7 @@ a {
 }
 
 .logo {
-    font-size: 24px;
+    font-size: 30px;
     font-weight: 700;
     color: var(--primary);
 }
@@ -117,7 +119,11 @@ a {
 }
 
 .hero .btn {
+    display: inline-block;
+    padding: 14px 26px;
     border-radius: 999px;
+    font-weight: 600;
+    transition: background 0.2s;
 }
 
 .hero .btn-primary {
@@ -139,30 +145,172 @@ a {
     background: rgba(255, 255, 255, 0.15);
 }
 
-.btn {
-    display: inline-block;
-    padding: 14px 26px;
-    border-radius: 10px;
-    font-weight: 600;
-    transition: background 0.2s;
+
+.panel {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 24px;
 }
 
-.btn-primary {
+.page-header {
+    margin-bottom: 24px;
+}
+
+.page-header h1 {
+    font-size: 40px;
+}
+
+.page-header p {
+    font-size: 18px;
+    color: var(--muted);
+}
+
+.status-card {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.status-label {
+    font-size: 16px;
+    color: var(--muted);
+}
+
+#nowServing {
+    font-size: 28px;
+}
+
+.add-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+#nameInput {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1.5px solid var(--line);
+    border-radius: 999px;
+    font: inherit;
+}
+
+#nameInput:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.panel .btn {
+    border: none;
+    border-radius: 999px;
+    padding: 12px 22px;
+    font: inherit;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.panel .btn-primary {
     background: var(--primary);
     color: #ffffff;
 }
 
-.btn-primary:hover {
+.panel .btn-primary:hover {
     background: var(--primary-dark);
 }
 
-.btn-secondary {
-    background: var(--card);
+.panel .btn-secondary {
+    background: #ffffff;
     color: var(--text);
+    border: 1.5px solid var(--line);
 }
 
-.btn-secondary:hover {
-    background: var(--line);
+.panel .btn-secondary:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.panel .btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    margin-bottom: 24px;
+}
+
+.queue-table {
+    width: 100%;
+    border-collapse: collapse;
+
+}
+
+.queue-table th, .queue-table td {
+    padding: 14px 16px;
+    text-align: left;
+}
+
+.queue-table th {
+    font-size: 18px;
+    background: var(--card);
+    color: var(--muted);
+    font-weight: 500;
+}
+
+.queue-table td {
+    border-top: 1px solid var(--line);
+}
+
+.finished td {
+    color: var(--muted);
+}
+
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.badge-waiting {
+    background: var(--primary-soft);
+    color: var(--primary);
+}
+
+.badge-in-room {
+    background: var(--primary);
+    color: #ffffff;
+}
+
+.badge-done {
+    background: var(--success-soft);
+    color: var(--success);
+}
+
+.badge-skipped {
+    background: var(--card);
+    color: var(--muted);
+}
+
+.skip-btn {
+    font: inherit;
+    background: #ffffff;
+    border: 1.5px solid var(--line);
+    border-radius: 999px;
+    padding: 6px 14px;
+    cursor: pointer;
+}
+
+.skip-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
 }
 
 @media (max-width: 600px) {
@@ -171,7 +319,7 @@ a {
     }
 
     .logo {
-        font-size: 20px;
+        font-size: 30px;
     }
 
     .nav-links a {

@@ -4,18 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Control Panel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main>
-        <h1>ClinicQueue</h1>
-        <h2 id="nowServing"></h2>
-        <input id="nameInput" type="text" placeholder="Patient Name">
-        <button id="addBtn">Add</button>
-        <button id="nextBtn">Next</button>
-        <button id="breakBtn">Break</button>
-        <button id="resumeBtn">Resume</button>
-        <button id="newDayBtn">New Day</button>
-        <ul id="waitingList"></ul>
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">ClinicQ</a>
+            <div class="nav-right">
+                <a href="display.html" class="nav-btn">Display</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="panel">
+        <div class="page-header">
+            <h1>Control panel</h1>
+            <p>Manage today's queue.</p>
+        </div>
+
+        <section class="status-card">
+            <div>
+                <p class="status-label">Now serving</p>
+                <h2 id="nowServing">No one in room</h2>
+            </div>
+            <button id="nextBtn" class="btn btn-primary">Next patient</button>
+        </section>
+
+        <div class="add-row">
+            <input id="nameInput" type="text" placeholder="Patient name">
+            <button id="addBtn" class="btn btn-secondary">Add</button>
+        </div>
+
+        <div class="table-wrap">
+            <table class="queue-table">
+                <thead>
+                    <tr>
+                        <th>Token</th>
+                        <th>Patient</th>
+                        <th>Status</th>
+                        <th>Wait</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="waitingList"></tbody>
+            </table>
+        </div>
+
+        <div class="bottom-actions">
+            <button id="breakBtn" class="btn btn-secondary">Break</button>
+            <button id="resumeBtn" class="btn btn-secondary">Resume</button>
+            <button id="newDayBtn" class="btn btn-secondary">New day</button>
+        </div>
     </main>
     <script src="common.js"></script>
     <script src="script.js"></script>
