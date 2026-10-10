@@ -313,6 +313,11 @@ a {
     color: var(--primary);
 }
 
+.bottom-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
 @media (max-width: 600px) {
     .navbar {
         padding: 16px 20px;

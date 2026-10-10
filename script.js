@@ -6,7 +6,6 @@ const nameInput = document.getElementById("nameInput");
 const addBtn = document.getElementById("addBtn");
 const nextBtn = document.getElementById("nextBtn");
 const breakBtn = document.getElementById("breakBtn");
-const resumeBtn = document.getElementById("resumeBtn");
 const newDayBtn = document.getElementById("newDayBtn");
 const serving = document.getElementById("nowServing");
 
@@ -68,10 +67,7 @@ function renderList() {
 
 function updateButtons() {
     nextBtn.disabled = onBreak;
-    nameInput.disabled = onBreak;
-    addBtn.disabled = onBreak;
-    breakBtn.disabled = onBreak;
-    resumeBtn.disabled = !onBreak;
+    breakBtn.textContent = onBreak ? "Resume" : "Break";
 }
 
 function saveData() {
@@ -140,6 +136,14 @@ function handleBreak() {
     renderList();
 }
 
+function handleBreakToggle() {
+    if (onBreak) {
+        handleResume();
+    } else {
+        handleBreak();
+    }
+}
+
 function handleResume() {
     onBreak = false;
     serving.textContent = "Doctor on duty now";
@@ -170,8 +174,7 @@ function handleNewDay() {
 
 addBtn.addEventListener("click", handleAdd);
 nextBtn.addEventListener("click", handleNext);
-breakBtn.addEventListener("click", handleBreak);
-resumeBtn.addEventListener("click", handleResume);
+breakBtn.addEventListener("click", handleBreakToggle);
 newDayBtn.addEventListener("click", handleNewDay);
 
 nameInput.addEventListener("keydown", function (event) {
