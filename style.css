@@ -194,6 +194,7 @@ a {
 #nameInput {
     flex: 1;
     padding: 12px 16px;
+    min-width: 0;
     border: 1.5px solid var(--line);
     border-radius: 999px;
     font: inherit;
@@ -226,6 +227,7 @@ a {
     background: #ffffff;
     color: var(--text);
     border: 1.5px solid var(--line);
+    flex-shrink: 0;
 }
 
 .panel .btn-secondary:hover {
@@ -237,6 +239,10 @@ a {
     opacity: 0.4;
     cursor: not-allowed;
 }
+
+/* .add-row .btn {
+    flex-shrink: 0;
+} */
 
 .table-wrap {
     overflow-x: auto;
@@ -254,6 +260,7 @@ a {
 .queue-table th, .queue-table td {
     padding: 14px 16px;
     text-align: left;
+    white-space: nowrap;
 }
 
 .queue-table th {
@@ -400,6 +407,14 @@ a {
         font-size: 30px;
     }
 
+    .nav-right {
+        gap: 6px;
+    }
+
+    .nav-btn {
+        padding: 8px 16px;
+    }
+
     .nav-links a {
         padding: 8px 10px;
         font-size: 15px;
@@ -411,7 +426,7 @@ a {
         padding: 48px 24px;
     }
 
-    .btn {
+    .hero .btn {
         width: 100%;
         text-align: center;
     }
