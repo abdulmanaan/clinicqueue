@@ -1,5 +1,10 @@
 const serving = document.getElementById("nowToken");
 const nextList = document.getElementById("nextList");
+const clock = document.getElementById("clock");
+
+function updateClock() {
+    clock.textContent = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit"});
+}
 
 function render() {
     const text = localStorage.getItem("clinicqueue");
@@ -18,6 +23,8 @@ function render() {
     } else {
         serving.textContent = `Token ${patientInRoom.token}`;
     }
+
+    serving.classList.toggle("on-break", onBreak);
 
     const avg = averageMinutes(patients);
     const top5 = patients.filter(p => p.status === "waiting").slice(0, 5);
@@ -44,3 +51,6 @@ function render() {
 
 render();
 window.addEventListener("storage", render);
+
+updateClock();
+setInterval(updateClock, 1000);
