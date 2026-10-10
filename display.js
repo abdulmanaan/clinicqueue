@@ -14,9 +14,9 @@ function render() {
     if (onBreak) {
         serving.textContent = "Doctor on break";
     } else if (patientInRoom === undefined) {
-        serving.textContent = "In Room: Token -";
+        serving.textContent = "Token -";
     } else {
-        serving.textContent = `In Room: Token ${patientInRoom.token}`;
+        serving.textContent = `Token ${patientInRoom.token}`;
     }
 
     const avg = averageMinutes(patients);
@@ -26,12 +26,18 @@ function render() {
     for (const p of top5) {
         count += 1;
         const li = document.createElement("li");
+        const tokenSpan = document.createElement("span")
+        const timeSpan = document.createElement("span");
+        timeSpan.className = "next-time";
+        tokenSpan.textContent = `Token ${p.token}`;
         if (onBreak) {
-            li.textContent = `Token ${p.token} (after break)`;
+            timeSpan.textContent = "after break";
         } else {
             const minutes = Math.max(1, Math.round(count * avg));
-            li.textContent = `Token ${p.token} ~${minutes} min`;
+            timeSpan.textContent = `about ${minutes} min`;
         }
+        li.appendChild(tokenSpan);
+        li.appendChild(timeSpan);
         nextList.appendChild(li);
     }
 }

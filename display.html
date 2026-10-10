@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Display</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <h1 id="nowToken">In Room: Token -</h1>
-    <h2>Next Tokens</h2>
-    <ul id="nextList"></ul>
+    <body class="display-page">
+        <header class="display-top">
+            <span class="logo">ClinicQ</span>
+            <span id="clock" class="clock"></span>
+        </header>
+
+        <main class="display-main">
+            <p class="display-label">Now serving</p>
+            <h1 id="nowToken" class="now-token">—</h1>
+
+            <h2 class="display-label">Up next</h2>
+            <ul id="nextList" class="next-list"></ul>
+        </main>
+    </body>
     <script src="common.js"></script>
     <script src="display.js"></script>
-</body>
 </html>

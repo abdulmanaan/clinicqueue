@@ -10,6 +10,7 @@
     --card: #f5f6f7;
     --success: #00ab4a;
     --success-soft: #e7f6ec;
+    --dark: #212121;
 }
 
 * {
@@ -316,6 +317,68 @@ a {
 .bottom-actions {
     display: flex;
     justify-content: space-between;
+}
+
+.display-page {
+    background: var(--dark);
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+.display-top {
+    display: flex;
+    justify-content: space-between;
+    padding: 24px 40px;
+}
+
+.clock {
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.7)
+}
+
+.display-main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px 40px 48px;
+    text-align: center;
+}
+
+.display-label {
+    font-size: clamp(24px, 3vw, 40px);
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.now-token {
+    font-size: clamp(80px, 16vw, 200px);
+    color: var(--accent);
+    line-height: 1;
+    margin: 16px 0 56px;
+}
+
+.next-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.next-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgb(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 20px 28px;
+    font-size: clamp(22px, 3vw, 36px);
+    font-weight: 600;
+}
+
+.next-time {
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
 }
 
 @media (max-width: 600px) {
