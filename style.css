@@ -41,6 +41,14 @@ a {
     font-size: 30px;
     font-weight: 700;
     color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    width: 1.3em;
+    height: 1.3em;
 }
 
 .nav-right {
